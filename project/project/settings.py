@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     'djmoney',
     'orders',
     'services',
+    'product',
 
 
 ]
+DATE_FORMAT = '%d-%m-%y'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -13,7 +13,6 @@ class OrderList(APIView):
         serializer = OrderSerializers(data=data)
 
         if serializer.is_valid():
-            print('4')
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
         return Response(status= status.HTTP_400_BAD_REQUEST)

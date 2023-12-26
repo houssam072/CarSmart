@@ -4,5 +4,5 @@ from .views import ServicesList
 app_name = 'services'
 
 urlpatterns = [
-    path('servicesList', ServicesList.as_view(), name='ServicesList')
+    path('servicesList/', ServicesList.as_view(), name='ServicesList')
 ]
