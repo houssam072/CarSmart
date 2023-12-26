@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Order
+from .models import Order, Services, TotalService
+
 
 class OrderSerializers(serializers.ModelSerializer):
     class Meta:
@@ -15,8 +16,32 @@ class OrderSerializers(serializers.ModelSerializer):
 "car_models",
 "order_notes",
 'created_at',
-'order_part',
-"first_pay",
 )
+            
+
+            
+
+class ServicesSerializers(serializers.ModelSerializer):
+    class Meta:
+            model = Services
+            fields = (  
+'services_number',
+'order',
+"product",
+"quantity_sold",
+"unit_price",
+"gross_amount",
+"total_amount",
+"order_part")           
+
+class TotalServicesSerializers(serializers.ModelSerializer):
+    class Meta:
+            model = TotalService
+            fields = (    
+'order_number',
+"services",
+"total_amount_before_vat",
+"total_amount_after_vat",
+"first_pay",)
 
        

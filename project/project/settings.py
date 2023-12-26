@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'djmoney',
     'orders',
-    'services',
     'product',
+    'storage',
 
 
 ]
