@@ -6,6 +6,7 @@ class OrderSerializers(serializers.ModelSerializer):
     class Meta:
             model = Order
             fields = (   
+                  
 'order_number',
 "order_title",
 "order_customers_name",
@@ -25,13 +26,13 @@ class ServicesSerializers(serializers.ModelSerializer):
     class Meta:
             model = Services
             fields = (  
-'services_number',
+'id',
 'order',
 "product",
 "quantity_sold",
-"unit_price",
-"gross_amount",
-"total_amount",
+# "unit_price",
+# "gross_amount",
+# "total_amount",
 "order_part")           
 
 class TotalServicesSerializers(serializers.ModelSerializer):

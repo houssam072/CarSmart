@@ -1,12 +1,16 @@
 from django.shortcuts import render
-from rest_framework.decorators import APIView
+from rest_framework.decorators import APIView, permission_classes
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, permissions
 from .models import Order, Services, TotalService
 from .serializers import OrderSerializers, ServicesSerializers, TotalServicesSerializers
 from product.models import Product
+from rest_framework.permissions import AllowAny  
 # Create your views here.
+
 class OrderList(APIView):
+    
+    permission_classes = (permissions.AllowAny,)
     def post(self, request):
         data = request.data
         print(data)
@@ -14,12 +18,13 @@ class OrderList(APIView):
 
         if serializer.is_valid():
             serializer.save()
+            # last_order = Order.objects.last()
+            # context = {
+            #     'last_order' : last_order
+            # }
             return Response(status=status.HTTP_201_CREATED)
         return Response(status= status.HTTP_400_BAD_REQUEST)
-
-        
-    
-        
+   
 
     def get(self, request, *args, **kwargs):
         service_id = kwargs.get('id')
@@ -56,9 +61,9 @@ class OrderList(APIView):
 
 
 class ServicesList(APIView):
-    def post(self, request, product_id):
+    def post(self, request, order):
         try:
-            product = Product.objects.get(pk=product_id)
+            product = Order.objects.get(id=order)
         except Product.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
         
@@ -70,7 +75,7 @@ class ServicesList(APIView):
                 product.save()
                 serializer.save(product=product)
                 # serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+                return Response(status=status.HTTP_201_CREATED)
             else:
                 return Response({'error': 'Not enough quantity available for the sale.'}, status=status.HTTP_400_BAD_REQUEST)
 

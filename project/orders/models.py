@@ -39,7 +39,6 @@ car_part = (
 
 # Create your models here.
 class Services(models.Model):
-    services_number = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     order = models.ForeignKey(Order, on_delete  = models.CASCADE)
     product = models.ForeignKey(Product, on_delete = models.CASCADE)
     quantity_sold = models.PositiveIntegerField()
@@ -55,7 +54,7 @@ class Services(models.Model):
             self.unit_price = 10
         self.gross_amount = self.unit_price * self.quantity_sold
         self.total_amount = self.gross_amount + ((self.gross_amount * 5) / 100)
-        # super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.order.order_customers_name}/{self.order.mobile_phone}/{self.product}/{self.order.created_at}"

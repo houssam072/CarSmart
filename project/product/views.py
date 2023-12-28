@@ -4,8 +4,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import ProductSerializers
 from .models import Product
+from rest_framework.permissions import AllowAny  
+
 # Create your views here.
 class ProductList(APIView):
+    permission_classes = [AllowAny] 
+
     def post(self, request):
         data = request.data
         serializer = ProductSerializers(data= data)

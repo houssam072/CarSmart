@@ -8,8 +8,8 @@ urlpatterns = [
     path('orderList/<int:phone>/',OrderList.as_view(), name='OrderList_filter_phone'),
     path('orderList/<str:order_number>/', OrderList.as_view(), name='Order-detail_delete'),
     
-    path('servicesList/<int:product_id>/',ServicesList.as_view(), name='ServicesList'),
-    path('servicesList/<str:order>/',ServicesList.as_view(), name='ServicesList_filter_order'),
+    path('servicesList/add/<int:order>',ServicesList.as_view(), name='ServicesList'),
+    path('servicesList/',ServicesList.as_view(), name='ServicesList_filter_order'),
     path('servicesList/delete/<int:product_id>/',ServicesList.as_view(), name='ServicesList_delete'),
 
     path('TotalServiceList/',TotalServiceList.as_view(), name='TotalServiceList'),
